@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module counter (
     input wire clk,
     input wire rst,
