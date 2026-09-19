@@ -71,7 +71,15 @@ module tb_counter;
         @(posedge clk); #1;
         
         check_count(4'd5, "6");
-            
+        
+        load=1; data_in=4'd9; en=0;
+        @(posedge clk); #1;          
+
+        load=0; en=1; up_down=0;
+        @(posedge clk); #1;
+        
+        check_count(4'd8, "Check if the value went from 9 to 8");
+        
         $finish;
              
     end
