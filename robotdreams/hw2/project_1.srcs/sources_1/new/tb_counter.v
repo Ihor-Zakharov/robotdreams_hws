@@ -25,7 +25,7 @@ module tb_counter;
         rst=0; load=0; en=0; up_down=0; data_in=0;
         
         rst = 1;
-        @(posedge clk);
+        @(posedge clk); #1;
         rst = 0;
 
         load=1; data_in=4'd10;
@@ -60,6 +60,18 @@ module tb_counter;
             $display("PASS 3");
         else 
             $display("FAIL 3");
+            
+         en = 0;
+         
+         @(posedge clk); #1;
+         @(posedge clk); #1;
+         
+         if (count === 0)
+            $display("PASS 4");
+        else 
+            $display("FAIL 4");
+            
+        $finish;
              
     end
 
