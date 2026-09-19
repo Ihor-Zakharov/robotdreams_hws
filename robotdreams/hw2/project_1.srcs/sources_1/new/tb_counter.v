@@ -31,11 +31,16 @@ module tb_counter;
         load=1; data_in=4'd10;
         
         @(posedge clk); #1;
+        
+        load = 0;
       
         if (count === 4'd10)
-            $display("PASS");
+            $display("PASS 1");
         else 
-            $display("FAIL");
+            $display("FAIL 1");
+            
+  
+             
     end
 
 endmodule
