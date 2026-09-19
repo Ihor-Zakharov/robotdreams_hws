@@ -1,0 +1,52 @@
+`timescale 1ns / 1ps          
+
+
+    input wire clk,
+    input wire rst,
+    input wire load,
+    input wire [3:0] data_in,
+    input wire en,
+    input wire up_down,
+    output reg [3:0] count
+
+
+module tb_counter;            
+
+    reg  clk, rst, load, en, up_down;
+    reg  [3:0] data_in;
+    wire [3:0] count;
+
+    // 4) инстанс DUT
+    
+    counter dut (
+      .clk(clk),
+      .rst(rst),
+      .load(load),
+      .data_in(data_in),
+      .en(en),
+      .up_down(up_down),
+      .count(count)
+    );
+
+    initial begin
+      rst=0; load=0; en=0; up_down=0; data_in=0;
+
+      clk = 1'0b;
+      forever #5 clk = ~clk;
+      
+      rst = 1;
+      @(posedge clk); #1;
+      rst = 0;
+      load=1; data_in=4'd10;
+      @(posedge clk); #1;
+      
+      load = 0;
+
+      
+    end
+
+    // 5) генератор клока
+    // 6) task automatic check_count
+    // 7) initial begin ... стимулы ... $finish; end
+
+endmodule
