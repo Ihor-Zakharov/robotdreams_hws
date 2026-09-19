@@ -24,6 +24,8 @@ module tb_counter;
     initial begin
         rst=0; load=0; en=0; up_down=0; data_in=0;
         
+        #4;
+        
         rst = 1;
         @(posedge clk); #1;
         rst = 0;
