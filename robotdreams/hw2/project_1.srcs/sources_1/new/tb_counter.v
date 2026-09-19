@@ -71,6 +71,15 @@ module tb_counter;
         else 
             $display("FAIL 4");
             
+        en = 1; up_down = 0;
+        
+        @(posedge clk); #1;
+        
+        if (count === 4'd15)
+            $display("PASS 5");
+        else 
+            $display("FAIL 5");
+            
         $finish;
              
     end
