@@ -80,8 +80,26 @@ module tb_counter;
         else 
             $display("FAIL 5");
             
+        load=1; data_in=4'd5; en=1; up_down=1;
+        @(posedge clk); #1;
+        
+        if (count === 4'd5)
+            $display("PASS 6");
+        else 
+            $display("FAIL 6");
+            
         $finish;
              
     end
+    
+    task automatic check_count(
+        input [3:0] expected,
+        input [810-1:0] name
+    );
+        if (count === expected)
+            $display("PASS %s", name);
+        else 
+            $display("FAIL %s", name);
+    endtask
 
 endmodule
