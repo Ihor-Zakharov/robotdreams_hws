@@ -39,7 +39,27 @@ module tb_counter;
         else 
             $display("FAIL 1");
             
-  
+         en = 1; up_down = 1;
+         
+         @(posedge clk); #1;
+         @(posedge clk); #1;
+         @(posedge clk); #1;
+         
+         
+        if (count === 4'd13)
+            $display("PASS 2");
+        else 
+            $display("FAIL 2");
+            
+            
+         @(posedge clk); #1;
+         @(posedge clk); #1;
+         @(posedge clk); #1;
+        
+        if (count === 0)
+            $display("PASS 3");
+        else 
+            $display("FAIL 3");
              
     end
 
