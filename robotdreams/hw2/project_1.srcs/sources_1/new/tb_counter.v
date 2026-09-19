@@ -34,10 +34,7 @@ module tb_counter;
         
         load = 0;
       
-        if (count === 4'd10)
-            $display("PASS 1");
-        else 
-            $display("FAIL 1");
+        check_count(4'd10, "1");
             
          en = 1; up_down = 1;
          
@@ -46,47 +43,32 @@ module tb_counter;
          @(posedge clk); #1;
          
          
-        if (count === 4'd13)
-            $display("PASS 2");
-        else 
-            $display("FAIL 2");
+        check_count(4'd13, "2");
             
             
          @(posedge clk); #1;
          @(posedge clk); #1;
          @(posedge clk); #1;
         
-        if (count === 0)
-            $display("PASS 3");
-        else 
-            $display("FAIL 3");
+        check_count(4'd0, "3");
             
          en = 0;
          
          @(posedge clk); #1;
          @(posedge clk); #1;
          
-         if (count === 0)
-            $display("PASS 4");
-        else 
-            $display("FAIL 4");
+         check_count(4'd0, "4");
             
         en = 1; up_down = 0;
         
         @(posedge clk); #1;
         
-        if (count === 4'd15)
-            $display("PASS 5");
-        else 
-            $display("FAIL 5");
+        check_count(4'd15, "5");
             
         load=1; data_in=4'd5; en=1; up_down=1;
         @(posedge clk); #1;
         
-        if (count === 4'd5)
-            $display("PASS 6");
-        else 
-            $display("FAIL 6");
+        check_count(4'd5, "6");
             
         $finish;
              
@@ -94,12 +76,12 @@ module tb_counter;
     
     task automatic check_count(
         input [3:0] expected,
-        input [810-1:0] name
+        input [8*30-1:0] name
     );
         if (count === expected)
-            $display("PASS %s", name);
+            $display("PASS: %0s", name);
         else 
-            $display("FAIL %s", name);
+            $display("FAIL: %0s", name);
     endtask
 
 endmodule
